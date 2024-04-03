@@ -1,0 +1,134 @@
+public class Lease{
+    public static void main(String[] args){}
+    private String name;
+    private int aptNumber;
+    private double rent;
+    private int term;
+    public Lease(){
+        name = "XXX";
+        aptNumber = 0;
+        rent = 1000;
+        term = 12;
+    }
+    public void setName(String name){
+        this.name = name;
+    }
+    public void setAptNumber(int aptNumber){
+        this.aptNumber = aptNumber;
+    }
+    public void setRent(double rent){
+        this.rent = rent;
+    }
+    public void setTerm(int term){
+        this.term = term;
+    }
+    public String getName(){
+        return name; 
+    }
+    public int getAptNumber(){
+        return aptNumber;
+    }
+    public double getRent(){
+        return rent;
+    }
+    public int getTerm(){
+        return term;
+    }
+    public void addPetFee(){
+        rent += 10;
+        explainPetPolicy();
+    }
+    public static void explainPetPolicy(){
+        System.out.println("$10 extra per pet");
+    }
+}
+
+
+
+public class DebugPen
+{
+   private String color;
+   private String point;
+   public DebugPen()
+   {
+      color = "black";
+      point = "fine";
+   }
+   public DebugPen(String color, String point)
+   {
+      this.color = color;
+      this.point = point;
+   }
+   public String getColor()
+   {
+  
+      return color;
+   }
+   public String getPoint()
+   {
+ 
+      return point;
+   }
+}
+
+
+
+
+public class DebugBox
+{
+   private int width;
+   private int length;
+   private int height;
+   public DebugBox()
+   {
+      length = 1;
+      width = 1;
+      height = 1;
+   }
+   public DebugBox(int width, int length, int height)
+   {
+      this.width = width;
+      this.length = length;
+      this.height = height;
+   }
+   public void showData()
+   {
+      System.out.println("Width: "  + width + "  Length: " +
+        length + "  Height: " + height);
+   }
+   public double getVolume()
+   { 
+      double vol = length * width * height;
+      return vol;
+   }
+}
+
+
+
+
+public class DebugCircle
+{
+   private int radius;
+   private int diameter;
+   private final double PI = 3.14159;
+   private double area;
+   public DebugCircle() {}; // Do not remove this line
+   public DebugCircle(int r)
+   {
+      radius = r;
+      diameter = 2 * r;
+      area = PI * r * r;
+   }
+   public int getRadius()
+   {
+      return radius;
+   }
+   public int getDiameter()
+   {
+      return diameter;
+   }
+   public double getArea()
+   {
+      return area;
+   }
+}

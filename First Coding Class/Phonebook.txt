@@ -1,0 +1,55 @@
+public class DebugBook
+{
+   protected int pages;
+   public DebugBook(int pages)
+   {
+      this.pages = pages;
+   }
+   public int getPages()
+   {
+      return pages;
+   }
+}
+----------------------------------
+import java.util.Scanner;
+public class DebugPhoneBook extends DebugBook
+{
+   private String area;
+   private String size;
+   private final int CUTOFF = 30;
+   DebugPhoneBook(int pages, String area)
+   {
+      super(pages);
+      this.area = area;
+      if(pages > CUTOFF)
+         size = "big";
+      else
+         size = "small";
+   }
+   public void display()
+   {
+      System.out.println("The phone book for " +
+         area + " has " + pages + " pages.");
+      System.out.println("That is a " +
+         size + " phone book."); 
+   }
+}
+--------------------------------
+// A PhoneBook is a Book with a city
+import java.util.Scanner;
+public class DebugNine1
+{
+   public static void main(String[] args)
+   {
+      String area, inStr;
+      int pages;
+      Scanner input = new Scanner(System.in);
+      System.out.print("Enter city for phone book >> ");
+      area = input.nextLine();
+      System.out.print("Enter number of pages in " + area +
+         "'s phone book >> ");
+      pages = input.nextInt();
+      DebugPhoneBook pb = new DebugPhoneBook(pages, area);
+      pb.display();
+   }
+}

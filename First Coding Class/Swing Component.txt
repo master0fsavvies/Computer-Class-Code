@@ -1,0 +1,115 @@
+// Prompts user for a size using Scanner
+// Creates a frame with the specified size
+// that is twice as tall as wide
+import javax.swing.*;
+import java.util.*;
+public class DebugFourteen1 extends JFrame
+{
+   public DebugFourteen1(int size)
+   {
+      super("This is my frame");
+      setSize(size, size * 2);
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+   }
+   public static void main(String[] args)
+   {
+      Scanner kb = new Scanner(System.in);
+      int size;
+      System.out.print("Enter width for frame >> ");
+      size = kb.nextInt();
+      DebugFourteen1 frame = new DebugFourteen1(size);
+      frame.setVisible(true);
+   } 
+}
+-----------------------------------------------------------
+// Displays list of payment options
+//      - credit card, check or cash
+// Displays fee for using each - 5%, 2% or 0%
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+public class DebugFourteen2 extends JFrame implements ItemListener
+{
+   FlowLayout flow = new FlowLayout();
+   JComboBox<String> payMethod = new JComboBox<String>();
+   JLabel payList = new JLabel("Pay List");
+   JTextField totFees = new JTextField(25);
+   String pctMsg = new String("per cent will be added to your bill");
+   int[] fees = {5, 2, 0};
+   int feePct = 0;
+   String output;
+   int fee = 0;
+   public DebugFourteen2()
+   {
+      super("Pay List");
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      setLayout(flow);
+      payMethod.addItemListener(this);
+      add(payList);
+      add(payMethod);
+      payMethod.addItem("Credit card");
+      payMethod.addItem("Check");
+      payMethod.addItem("Cash");
+      add(totFees);
+   }
+   public static void main(String[] arguments)
+   {
+      JFrame cframe = new DebugFourteen2();
+      cframe.setSize(350, 150);
+      cframe.setVisible(true);
+   }
+   @Override
+   public void itemStateChanged(ItemEvent list)
+   {
+      Object source = list.getSource();
+      if(source == payMethod)
+      {
+         int fee = payMethod.getSelectedIndex();
+         feePct = fees[fee];
+         output = feePct + " " + pctMsg;
+         totFees.setText(output);
+      }
+   }
+}
+=================================================================
+// Write your code here
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+public class JBookQuote{
+    public static void main(String[] args){
+        JFrame aFrame = new JFrame("Book");
+        aFrame.setSize(250, 100);
+        aFrame.setVisible(true);
+        JLabel firstLine = new JLabel("Two houses, both alike in dignity...");
+        aFrame.add(firstLine);
+    }
+}
+-----------------------------------------------------------------
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+public class JBookQuote2 extends JFrame implements ActionListener{
+    JLabel quote = new JLabel("To begin with, Marley was dead.");
+    JButton press = new JButton("Click for source");
+    JLabel sourced = new JLabel("");
+    public static void main(String[] args){
+        JBookQuote2 frame = new JBookQuote2();
+        frame.setVisible(true);
+    }
+    public JBookQuote2(){
+        super("Book Quote");
+        setSize(250, 100);
+        setLayout(new FlowLayout());
+        add(quote);
+        add(press);
+        add(sourced);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        press.addActionListener(this);
+    }
+    @Override
+    public void actionPerformed(ActionEvent e){
+        String source = "** A Christmas Carol **";
+        sourced.setText(source);
+    }
+}

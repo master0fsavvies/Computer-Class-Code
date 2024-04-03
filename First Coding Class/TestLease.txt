@@ -1,0 +1,122 @@
+import java.util.Scanner;
+public class TestLease{
+    public static void main(String[] args){
+        Lease lease1 = new Lease();
+        Lease lease2 = new Lease();
+        Lease lease3 = new Lease();
+        Lease lease4 = new Lease();
+        lease1 = getData();
+        lease2 = getData();
+        lease3 = getData();
+        showValues(lease1);
+        lease1.addPetFee();
+        showValues(lease1);
+    }
+    public static Lease getData(){
+        Lease lease = new Lease();
+        Scanner input = new Scanner(System.in);
+        System.out.print("Name >> ");
+        String name = input.nextLine();
+        lease.setName(name);
+        System.out.print("Apt Number >> ");
+        int aptNumber = input.nextInt();
+        lease.setAptNumber(aptNumber);
+        System.out.print("Rent >> ");
+        double rent = input.nextDouble();
+        lease.setRent(rent);
+        System.out.print("Term >> ");
+        int term = input.nextInt();
+        lease.setTerm(term);
+        return lease;
+    }
+    public static void showValues (Lease lease){
+        System.out.print("Your lease results:");
+        System.out.println("Name: " + lease.getName());
+        System.out.println("Apartment: " + lease.getAptNumber());
+        System.out.println("Rent: " + lease.getRent());
+        System.out.println("Term: " + lease.getTerm());
+    }
+}
+
+
+
+
+import java.util.Scanner;
+public class DebugFour2
+{
+   public static void main(String args[])
+   {
+      Scanner input = new Scanner(System.in);
+      String color;
+      String point;
+      System.out.print("Enter a color ink for the pen >> ");
+      color = input.nextLine();
+      System.out.print("Enter a point size - fine, medium, or thick >> ");
+      point = input.nextLine();
+      DebugPen pen1 = new DebugPen();
+      DebugPen pen2 = new DebugPen(point, color);
+      System.out.println("Default value pen:");
+      display(pen1);
+      System.out.println("User value pen:");
+      display(pen2);
+   }
+   public static void display(DebugPen p)
+   {
+      System.out.println("   The pen has ink color " + p.getColor());
+      System.out.println("      and a " + p.getPoint() + " point.");
+   }
+}
+
+
+
+import java.util.Scanner;
+public class DebugFour3
+{
+   public static void main(String args[])
+   {
+      Scanner input = new Scanner(System.in);
+      int w;
+      int l;
+      int h;
+      System.out.print("Enter width of box >> ");
+      w = input.nextInt();
+      System.out.print("Enter width of box >> ");
+      l = input.nextInt();
+      System.out.print("Enter width of box >> ");
+      h = input.nextInt();
+      DebugBox box1 = new DebugBox();
+      DebugBox box2 = new DebugBox(w, l, h);
+      System.out.println("The dimensions of the first box are");
+      box1.showData();
+      System.out.print("  The volume of the first box is ");
+      showVolume(box1);
+      System.out.println("The dimensions of the second box are");
+      box2.showData();
+      System.out.print("  The volume of the second box is ");
+      showVolume(box2);
+   }
+   public static void showVolume(DebugBox aBox)
+   {
+      double vol = aBox.getVolume();
+      System.out.println(vol);
+   }
+}
+
+
+
+
+import java.util.Scanner;
+public class DebugFour1
+{
+   public static void main(String args[])
+   {
+      Scanner input = new Scanner(System.in);
+      
+      System.out.print("Enter a radius for a circle >> ");
+      int r = input.nextInt();
+      DebugCircle c = new DebugCircle(r);
+      System.out.println("The radius is " + c.getRadius());
+      System.out.println("The diamter is " + c.getDiameter());
+      System.out.println("The area is " + c.getArea());
+   }
+}

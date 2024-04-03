@@ -1,0 +1,139 @@
+         // Program describes two files
+// prompts user to see file statistics
+// tells which one is newer and which one is larger
+// Note - change path for data files if necessary on your computer
+import java.nio.file.*;
+import java.nio.file.attribute.*;
+import java.io.IOException;
+import java.util.*;
+public class DebugEleven1
+{
+   public static void main(String[] args)
+   {
+      Scanner kb = new Scanner(System.in);
+      String choice;
+      Path file1 =
+         Paths.get("/home/nt-user/workspace/DebugData1.txt");
+      Path file2 =
+         Paths.get("/home/nt-user/workspace/DebugData2.txt");
+      try
+      {
+         BasicFileAttributes attr1 =
+            Files.readAttributes(file1, BasicFileAttributes.class);
+         System.out.println("Do you want to see statistics for first file?");
+	 System.out.print("Y or N >> ");
+         choice = kb.nextLine();
+         if(choice.equals("Y"))
+         {
+            System.out.println("File: " + file1.getFileName());
+            System.out.println("Creation time " + attr1.creationTime());
+            System.out.println("Last modified time " + attr1.lastModifiedTime());
+            System.out.println("Size " + attr1.size());
+         }
+         BasicFileAttributes attr2 =
+            Files.readAttributes(file2, BasicFileAttributes.class);
+         System.out.println("Do you want to see statistics for second file?");
+         System.out.print("Y or N >> ");
+         choice = kb.nextLine();
+         if(choice.equals("Y"))
+         {   
+            System.out.println("\nFile: " + file2.getFileName());
+            System.out.println("Creation time " + attr2.creationTime());
+            System.out.println("Last modified time " + attr2.lastModifiedTime());
+            System.out.println("Size " + attr2.size());
+         }
+         if(attr1.creationTime().compareTo(attr2.creationTime()) > 0)
+            System.out.println("\n" + file1.getFileName() +
+               " was created earlier");
+         else
+            System.out.println("\n" + file1.getFileName() +
+               " was not created earlier");
+         if(attr1.size() > attr2.size())
+            System.out.println(file1.getFileName() + " is larger ");
+         else
+            System.out.println(file1.getFileName() + " is not larger");
+      }
+      catch(IOException e)
+      {
+         System.out.println("IO Exception");
+      }
+   }
+}
+----------------------------------------------------------------------------------------
+import java.io.*;
+import java.nio.channels.FileChannel;
+import java.nio.ByteBuffer;
+import static java.nio.file.StandardOpenOption.*;
+import java.util.*;
+public class DebugEleven2
+{
+   public static void main(String[] args)
+   {
+      Scanner kb = new Scanner(System.in);
+      Path fileIn =
+         Paths.get("/home/nt-user/workspace/DebugData3.txt");
+      Path fileOut =
+         Paths.get("/home/nt-user/workspace/DebugData3New.txt");
+      String areaCode;
+      String formattedCode;
+      String phone;
+      InputStream input = null;
+      OutputStream output = null;
+      System.out.print("Enter area code to add to numbers >> ");
+      areaCode = kb.nextLine();
+      formattedCode = "(" + areaCode + ") ";
+      try
+      {
+         input = Files.newInputStream(fileIn);
+         BufferedReader reader = new BufferedReader
+            (new InputStreamReader(input));
+         output = Files.newOutputStream(fileOut);
+         phone = reader.readLine();
+         while(phone != null)
+         {
+            phone = formattedCode + phone +
+               System.getProperty("line.separator");
+            byte[] phoneBytes = phone.getBytes();
+            output.write(phoneBytes);
+            phone = reader.readLine();
+         }
+         input.close();
+         output.close();
+       }
+       catch (IOException e)
+       {
+          System.out.println(e);
+       }
+   }
+===================================================================================
+import java.nio.file.*;
+import java.nio.file.attribute.*;
+import java.io.IOException;
+import java.util.*;
+public class FileStatistics{
+    public static void main(String[] args){
+        Scanner input = new Scanner(System.in);
+        String fileOption;
+        Path filePath;
+        Path fullPath;
+        String folder;
+        String stringPath;
+        System.out.print("Enter a file name >> ");
+        fileOption = input.nextLine();
+        try{
+        filePath = Paths.get(fileOption);
+        fullPath = filePath.toAbsolutePath();
+        BasicFileAttributes attr = Files.readAttributes(filePath, BasicFileAttributes.class);
+        stringPath = fullPath.toString();
+        String segments[] = stringPath.split("/");
+        folder = segments[segments.length - 2];
+        System.out.println("Path is " + fullPath.toString());
+        System.out.println("File name is " + filePath.toString());
+        System.out.println("Folder name is " + folder);
+        System.out.println("File's size is " + attr.size());
+        System.out.println("File's creation time is " + attr.creationTime());}
+        catch (IOException e){
+            System.out.println(e);
+        }
+    }
+}
